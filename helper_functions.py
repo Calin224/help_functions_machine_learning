@@ -157,8 +157,8 @@ def test_step_with_batches(model: nn.Module,
       X, y = X.to(device), y.to(device)
       test_pred = model(X)
 
-      test_loss += loss_fn(test_pred, y)
-      test_acc += accuracy_fn(y, test_pred.argmax(dim=1))
+      test_loss += loss_fn(test_pred, y).item()
+      test_acc += accuracy_fn(y, test_pred.argmax(dim=1)).item()
 
     test_loss /= len(data_loader)
     test_acc /= len(data_loader)
